@@ -24,6 +24,7 @@ This project uses **two separate Docker configurations**:
 ### Architecture
 
 #### Development (docker-compose.dev.yml)
+
 ```
 ┌─────────────────┐         ┌──────────────┐         ┌─────────────┐
 │   Your App      │────────▶│  Neon Local  │────────▶│ Neon Cloud  │
@@ -32,6 +33,7 @@ This project uses **two separate Docker configurations**:
 ```
 
 #### Production (docker-compose.prod.yml)
+
 ```
 ┌─────────────────┐                                   ┌─────────────┐
 │   Your App      │──────────────────────────────────▶│ Neon Cloud  │
@@ -238,25 +240,25 @@ docker-compose -f docker-compose.prod.yml exec app sh
 
 ### Development (.env.development)
 
-| Variable | Description | Required | Default |
-|----------|-------------|----------|---------|
-| `NEON_API_KEY` | Your Neon API key | ✅ | - |
-| `NEON_PROJECT_ID` | Your Neon project ID | ✅ | - |
-| `PARENT_BRANCH_ID` | Branch to create ephemeral branches from | ❌ | `main` |
-| `DELETE_BRANCH` | Auto-delete branches on container stop | ❌ | `true` |
-| `DATABASE_NAME` | Database name | ❌ | `neondb` |
-| `PORT` | Application port | ❌ | `3000` |
-| `LOG_LEVEL` | Logging level | ❌ | `debug` |
-| `ARCJET_KEY` | Arcjet API key | ✅ | - |
+| Variable           | Description                              | Required | Default  |
+| ------------------ | ---------------------------------------- | -------- | -------- |
+| `NEON_API_KEY`     | Your Neon API key                        | ✅       | -        |
+| `NEON_PROJECT_ID`  | Your Neon project ID                     | ✅       | -        |
+| `PARENT_BRANCH_ID` | Branch to create ephemeral branches from | ❌       | `main`   |
+| `DELETE_BRANCH`    | Auto-delete branches on container stop   | ❌       | `true`   |
+| `DATABASE_NAME`    | Database name                            | ❌       | `neondb` |
+| `PORT`             | Application port                         | ❌       | `3000`   |
+| `LOG_LEVEL`        | Logging level                            | ❌       | `debug`  |
+| `ARCJET_KEY`       | Arcjet API key                           | ✅       | -        |
 
 ### Production (.env.production)
 
-| Variable | Description | Required | Default |
-|----------|-------------|----------|---------|
-| `DATABASE_URL` | Full Neon Cloud connection string | ✅ | - |
-| `PORT` | Application port | ❌ | `3000` |
-| `LOG_LEVEL` | Logging level | ❌ | `info` |
-| `ARCJET_KEY` | Arcjet API key | ✅ | - |
+| Variable       | Description                       | Required | Default |
+| -------------- | --------------------------------- | -------- | ------- |
+| `DATABASE_URL` | Full Neon Cloud connection string | ✅       | -       |
+| `PORT`         | Application port                  | ❌       | `3000`  |
+| `LOG_LEVEL`    | Logging level                     | ❌       | `info`  |
+| `ARCJET_KEY`   | Arcjet API key                    | ✅       | -       |
 
 ---
 
@@ -343,7 +345,9 @@ postgres://neon:npg@neon-local:5432/neondb?sslmode=require
 If using `pg` or `postgres` libraries, add to your database configuration:
 
 ```javascript
-ssl: { rejectUnauthorized: false }
+ssl: {
+  rejectUnauthorized: false;
+}
 ```
 
 ### Issue: Port 5432 already in use
@@ -352,12 +356,13 @@ ssl: { rejectUnauthorized: false }
 
 ```yaml
 ports:
-  - '5433:5432'  # Use 5433 on host instead
+  - "5433:5432" # Use 5433 on host instead
 ```
 
 ### Issue: Ephemeral branches not being deleted
 
 **Solution**: Check Docker Desktop settings on Mac:
+
 - Go to Settings → General
 - Use **gRPC FUSE** instead of **VirtioFS**
 
@@ -411,11 +416,11 @@ Add to `.gitignore`:
 If your app uses `@neondatabase/serverless`, configure it:
 
 ```javascript
-import { neon, neonConfig } from '@neondatabase/serverless';
+import { neon, neonConfig } from "@neondatabase/serverless";
 
 // Development only
-if (process.env.NODE_ENV === 'development') {
-  neonConfig.fetchEndpoint = 'http://neon-local:5432/sql';
+if (process.env.NODE_ENV === "development") {
+  neonConfig.fetchEndpoint = "http://neon-local:5432/sql";
   neonConfig.useSecureWebSocket = false;
   neonConfig.poolQueryViaFetch = true;
 }
@@ -447,6 +452,7 @@ const sql = neon(process.env.DATABASE_URL);
 ## Support
 
 For issues related to:
+
 - **Neon**: [Neon Support](https://neon.tech/docs/introduction/support)
 - **Docker**: [Docker Forums](https://forums.docker.com/)
 - **This App**: Open an issue on GitHub

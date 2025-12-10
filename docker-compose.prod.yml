@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   # Application service for production
@@ -10,15 +10,26 @@ services:
     container_name: acquasitions-app-prod
     restart: unless-stopped
     ports:
-      - '3000:3000'
+      - "3000:3000"
     env_file:
-        - .env.production
+      - .env.production
     volumes:
       - ./logs:/app/logs
     networks:
       - app-network
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health", "||", "exit", "1"]
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "--spider",
+          "http://localhost:3000/health",
+          "||",
+          "exit",
+          "1",
+        ]
       interval: 30s
       timeout: 10s
       retries: 3

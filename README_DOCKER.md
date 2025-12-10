@@ -5,6 +5,7 @@
 ### Development (with Neon Local)
 
 1. **Copy environment file**:
+
    ```powershell
    Copy-Item .env.development .env
    ```
@@ -15,6 +16,7 @@
    - `ARCJET_KEY` - Your Arcjet API key
 
 3. **Start development environment**:
+
    ```powershell
    # Using the quick start script
    .\start-dev.ps1
@@ -69,7 +71,7 @@ See **[DOCKER_SETUP.md](./DOCKER_SETUP.md)** for complete documentation includin
 ✅ **Production-optimized** builds with multi-stage Dockerfile  
 ✅ **Separate configurations** for dev vs prod  
 ✅ **Health checks** for all services  
-✅ **Git branch integration** for persistent branches per feature  
+✅ **Git branch integration** for persistent branches per feature
 
 ## 🛠️ Common Commands
 
