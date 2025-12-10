@@ -5,8 +5,8 @@ import morgan from "morgan";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRoutes from "#routes/auth.routes.js";
-import {timestamp} from "drizzle-orm/pg-core";
 import usersRoutes from "#routes/users.routes.js";
+import securityMiddleware from "#middleware/security.middleware.js";
 
 const app = express();
 
@@ -15,9 +15,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(morgan('combined', {stream: { write: (message) => logger.info(message.trim())}}));
+app.use(securityMiddleware);
 
-
-app.use(morgan('combined', {stream: {write: (message) => logger.info(message.trim())}}));
 
 app.get('/', (req, res) => {
     logger.info('Hello from acquasition!');
