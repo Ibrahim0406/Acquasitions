@@ -36,20 +36,20 @@ A modern, production-ready REST API built with Express.js, featuring authenticat
 ### Local Development (Without Docker)
 
 1. Clone the repository:
-\`\`\`bash
-git clone https://github.com/Ibrahim0406/Acquasitions.git
-cd Acquasitions
-\`\`\`
+   \`\`\`bash
+   git clone https://github.com/Ibrahim0406/Acquasitions.git
+   cd Acquasitions
+   \`\`\`
 
 2. Install dependencies:
-\`\`\`bash
-npm install
-\`\`\`
+   \`\`\`bash
+   npm install
+   \`\`\`
 
 3. Configure environment variables:
-\`\`\`bash
-cp .env.example .env
-\`\`\`
+   \`\`\`bash
+   cp .env.example .env
+   \`\`\`
 
 Edit `.env` with your configuration:
 \`\`\`env
@@ -62,15 +62,15 @@ JWT_EXPIRES_IN=7d
 \`\`\`
 
 4. Run database migrations:
-\`\`\`bash
-npm run db:generate
-npm run db:migrate
-\`\`\`
+   \`\`\`bash
+   npm run db:generate
+   npm run db:migrate
+   \`\`\`
 
 5. Start the development server:
-\`\`\`bash
-npm run dev
-\`\`\`
+   \`\`\`bash
+   npm run dev
+   \`\`\`
 
 The API will be available at `http://localhost:3000`
 
@@ -79,9 +79,9 @@ The API will be available at `http://localhost:3000`
 Docker development uses Neon Local for automatic ephemeral database branches.
 
 1. Configure environment:
-\`\`\`bash
-cp .env.development .env
-\`\`\`
+   \`\`\`bash
+   cp .env.development .env
+   \`\`\`
 
 Edit `.env` with your Neon credentials:
 \`\`\`env
@@ -93,35 +93,39 @@ ARCJET_KEY=your_arcjet_key
 \`\`\`
 
 2. Start the development environment:
-\`\`\`bash
-docker-compose -f docker-compose.dev.yml up
-\`\`\`
+   \`\`\`bash
+   docker-compose -f docker-compose.dev.yml up
+   \`\`\`
 
 3. Access the application:
+
 - API: `http://localhost:3000`
 - Database: `localhost:5432`
 
 ## API Endpoints
 
 ### Health Check
+
 \`\`\`
 GET /health
 \`\`\`
 
 ### Authentication
+
 \`\`\`
-POST /api/auth/register    - Register new user
-POST /api/auth/login       - Login user
-POST /api/auth/logout      - Logout user
-GET  /api/auth/me          - Get current user
+POST /api/auth/register - Register new user
+POST /api/auth/login - Login user
+POST /api/auth/logout - Logout user
+GET /api/auth/me - Get current user
 \`\`\`
 
 ### Users
+
 \`\`\`
-GET    /api/users          - Get all users (admin)
-GET    /api/users/:id      - Get user by ID
-PUT    /api/users/:id      - Update user
-DELETE /api/users/:id      - Delete user
+GET /api/users - Get all users (admin)
+GET /api/users/:id - Get user by ID
+PUT /api/users/:id - Update user
+DELETE /api/users/:id - Delete user
 \`\`\`
 
 ## Project Structure
@@ -129,19 +133,19 @@ DELETE /api/users/:id      - Delete user
 \`\`\`
 acquasitions/
 ├── src/
-│   ├── config/           # Configuration files (database, logger, arcjet)
-│   ├── controllers/      # Request handlers
-│   ├── middleware/       # Custom middleware (auth, security)
-│   ├── models/          # Database models (Drizzle schema)
-│   ├── routes/          # Route definitions
-│   ├── services/        # Business logic layer
-│   ├── utils/           # Utility functions (JWT, cookies, formatting)
-│   ├── validations/     # Zod validation schemas
-│   ├── app.js           # Express app configuration
-│   ├── server.js        # Server entry point
-│   └── index.js         # Main entry file
-├── drizzle/             # Database migrations
-├── scripts/             # Shell scripts for Docker
+│ ├── config/ # Configuration files (database, logger, arcjet)
+│ ├── controllers/ # Request handlers
+│ ├── middleware/ # Custom middleware (auth, security)
+│ ├── models/ # Database models (Drizzle schema)
+│ ├── routes/ # Route definitions
+│ ├── services/ # Business logic layer
+│ ├── utils/ # Utility functions (JWT, cookies, formatting)
+│ ├── validations/ # Zod validation schemas
+│ ├── app.js # Express app configuration
+│ ├── server.js # Server entry point
+│ └── index.js # Main entry file
+├── drizzle/ # Database migrations
+├── scripts/ # Shell scripts for Docker
 ├── docker-compose.dev.yml
 ├── docker-compose.prod.yml
 ├── Dockerfile
@@ -150,39 +154,40 @@ acquasitions/
 
 ## Available Scripts
 
-| Script | Description |
-|--------|-------------|
-| `npm start` | Start production server |
-| `npm run dev` | Start development server with hot reload |
-| `npm run lint` | Run ESLint |
-| `npm run lint:fix` | Fix ESLint errors |
-| `npm run format` | Format code with Prettier |
-| `npm run format:check` | Check code formatting |
-| `npm run db:generate` | Generate database migrations |
-| `npm run db:migrate` | Run database migrations |
-| `npm run db:studio` | Open Drizzle Studio |
-| `npm test` | Run tests |
+| Script                 | Description                              |
+| ---------------------- | ---------------------------------------- |
+| `npm start`            | Start production server                  |
+| `npm run dev`          | Start development server with hot reload |
+| `npm run lint`         | Run ESLint                               |
+| `npm run lint:fix`     | Fix ESLint errors                        |
+| `npm run format`       | Format code with Prettier                |
+| `npm run format:check` | Check code formatting                    |
+| `npm run db:generate`  | Generate database migrations             |
+| `npm run db:migrate`   | Run database migrations                  |
+| `npm run db:studio`    | Open Drizzle Studio                      |
+| `npm test`             | Run tests                                |
 
 ## Environment Variables
 
 ### Development
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `NODE_ENV` | Environment mode | ✅ |
-| `PORT` | Server port | ❌ (default: 3000) |
-| `DATABASE_URL` | Database connection string | ✅ |
-| `ARCJET_KEY` | Arcjet API key | ✅ |
-| `JWT_SECRET` | JWT signing secret | ✅ |
-| `JWT_EXPIRES_IN` | JWT expiration time | ❌ (default: 7d) |
+
+| Variable         | Description                | Required           |
+| ---------------- | -------------------------- | ------------------ |
+| `NODE_ENV`       | Environment mode           | ✅                 |
+| `PORT`           | Server port                | ❌ (default: 3000) |
+| `DATABASE_URL`   | Database connection string | ✅                 |
+| `ARCJET_KEY`     | Arcjet API key             | ✅                 |
+| `JWT_SECRET`     | JWT signing secret         | ✅                 |
+| `JWT_EXPIRES_IN` | JWT expiration time        | ❌ (default: 7d)   |
 
 ### Docker Development (Neon Local)
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `NEON_API_KEY` | Neon API key | ✅ |
-| `NEON_PROJECT_ID` | Neon project ID | ✅ |
-| `PARENT_BRANCH_ID` | Parent branch for ephemeral branches | ❌ (default: main) |
-| `DELETE_BRANCH` | Auto-delete branches on stop | ❌ (default: true) |
 
+| Variable           | Description                          | Required           |
+| ------------------ | ------------------------------------ | ------------------ |
+| `NEON_API_KEY`     | Neon API key                         | ✅                 |
+| `NEON_PROJECT_ID`  | Neon project ID                      | ✅                 |
+| `PARENT_BRANCH_ID` | Parent branch for ephemeral branches | ❌ (default: main) |
+| `DELETE_BRANCH`    | Auto-delete branches on stop         | ❌ (default: true) |
 
 ## Security Features
 
@@ -200,14 +205,15 @@ acquasitions/
 The application uses Drizzle ORM with the following schema:
 
 ### Users Table
+
 \`\`\`sql
 CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
-  username VARCHAR(255) UNIQUE NOT NULL,
-  email VARCHAR(255) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL,
-  created_at TIMESTAMP DEFAULT NOW(),
-  updated_at TIMESTAMP DEFAULT NOW()
+id SERIAL PRIMARY KEY,
+username VARCHAR(255) UNIQUE NOT NULL,
+email VARCHAR(255) UNIQUE NOT NULL,
+password VARCHAR(255) NOT NULL,
+created_at TIMESTAMP DEFAULT NOW(),
+updated_at TIMESTAMP DEFAULT NOW()
 );
 \`\`\`
 
@@ -233,36 +239,36 @@ npm test -- --watch
 ### Production with Docker
 
 1. Configure production environment:
-\`\`\`bash
-cp .env.production.example .env.production
-\`\`\`
+   \`\`\`bash
+   cp .env.production.example .env.production
+   \`\`\`
 
 2. Build and start:
-\`\`\`bash
-docker-compose -f docker-compose.prod.yml up -d --build
-\`\`\`
+   \`\`\`bash
+   docker-compose -f docker-compose.prod.yml up -d --build
+   \`\`\`
 
 3. Run migrations:
-\`\`\`bash
-docker-compose -f docker-compose.prod.yml exec app npm run db:migrate
-\`\`\`
+   \`\`\`bash
+   docker-compose -f docker-compose.prod.yml exec app npm run db:migrate
+   \`\`\`
 
 ### Manual Deployment
 
 1. Build the application:
-\`\`\`bash
-npm install --production
-\`\`\`
+   \`\`\`bash
+   npm install --production
+   \`\`\`
 
 2. Run migrations:
-\`\`\`bash
-npm run db:migrate
-\`\`\`
+   \`\`\`bash
+   npm run db:migrate
+   \`\`\`
 
 3. Start the server:
-\`\`\`bash
-npm start
-\`\`\`
+   \`\`\`bash
+   npm start
+   \`\`\`
 
 ### Code Style
 
@@ -278,11 +284,14 @@ npm run format
 
 **Port already in use**
 \`\`\`bash
+
 # Find and kill the process
+
 lsof -ti:3000 | xargs kill -9
 \`\`\`
 
 **Database connection error**
+
 - Verify your `DATABASE_URL` is correct
 - Ensure your Neon database is active
 - Check network connectivity
