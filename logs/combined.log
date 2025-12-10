@@ -1142,3 +1142,6 @@
 {"level":"info","message":"::ffff:127.0.0.1 - - [10/Dec/2025:04:38:10 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"-\"","service":"acquasitions-api"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [10/Dec/2025:04:38:10 +0000] \"GET /api HTTP/1.1\" 200 42 \"-\" \"-\"","service":"acquasitions-api"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [10/Dec/2025:04:38:10 +0000] \"GET /nonexsistent HTTP/1.1\" 404 21 \"-\" \"-\"","service":"acquasitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [10/Dec/2025:04:50:14 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"-\"","service":"acquasitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [10/Dec/2025:04:50:14 +0000] \"GET /api HTTP/1.1\" 200 42 \"-\" \"-\"","service":"acquasitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [10/Dec/2025:04:50:14 +0000] \"GET /nonexsistent HTTP/1.1\" 404 21 \"-\" \"-\"","service":"acquasitions-api"}
